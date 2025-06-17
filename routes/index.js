@@ -11,4 +11,9 @@ router.get('/about', function(req, res, next) {
   res.render('about', { title: 'Express' });
 });
 
+/* GET About page. */
+router.get('/contact', function(req, res, next) {
+  res.render('about', { title: 'Express' });
+});
+
 module.exports = router;
