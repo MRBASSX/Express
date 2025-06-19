@@ -6,10 +6,10 @@
     <title>Home</title>
 </head>
 <body>
-  <h1><%=title %></h1>
+  <!-- <h1><%=links %></h1> -->
    
 <p>
-    <%- include('nav') %>
+    <%- include('nav')%>
 </p>
 
     <a href="/">Home</a>
@@ -20,35 +20,10 @@
 
  
 
-  <p><% for (var i = 0; i < 10; i++) { %>
-      <li class="nav-icon">
-        <a href="" class="nav-link">
-          <%= 10 %>
-          <span class="link-text"><%= 10 %></span>
-        </a>
-      </li>
-    <% } %></p>
 
 
-    <script>
-           const links = [
-        {
-          href: '/',
-          icon: '<svg>...</svg>',
-          text: 'Home'
-        },
-        {
-          href: 'collection',
-          icon: '<svg>...</svg>',
-          text: 'Collection'
-        },
-        {
-          href: 'live',
-          icon: '<svg>...</svg>',
-          text: 'Live'
-        }
-      ];
-    </script>
+
+  
   
 </body>
 </html>
