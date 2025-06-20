@@ -79,7 +79,7 @@ app.get('/users', async (req, res) => {
 
 
 
-SetUp Mongoose
+SetUp Mongoose(https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#install-mongodb-community-edition)
 
 
 1.sudo apt-get install gnupg curl

@@ -3,14 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/Router');
+const mongoose = require('mongoose');
 var app = express();
+
 
 // DEBUG=express:* npm start
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
 
 
 // view engine setup
@@ -23,6 +22,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
+
+
+// Replace "mydatabase" with your actual database name
+mongoose.connect('mongodb://localhost:27017/', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+
+  console.log('✅ Connected to MongoDB');
+
+}).catch((err) => {
+
+  console.error('❌ MongoDB connection error:', err);
+  
+});
 
 
 
