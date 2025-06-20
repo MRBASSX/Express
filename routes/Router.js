@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const User = require('./models/User');
+const User = require('../models/User');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -38,7 +38,7 @@ router.get('/contact', function(req, res, next) {
 
 
 // Create user
-app.post('/users', async (req, res) => {
+router.post('/users/create', async (req, res) => {
   try {
     const user = new User(req.body);
     await user.save();
@@ -50,14 +50,14 @@ app.post('/users', async (req, res) => {
 
 
 // Get all users
-app.get('/users', async (req, res) => {
+router.get('/users', async (req, res) => {
   const users = await User.find();
   res.send(users);
 });
 
 
 // Get user
-app.get('/users/:id', async (req, res) => {
+router.get('/users/:id', async (req, res) => {
   const users = await User.params.id.find();
   res.send(users);
 });
