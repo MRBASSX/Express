@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const User = require('./models/User');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -35,4 +36,29 @@ router.get('/contact', function(req, res, next) {
   res.render('about', { title: 'Express' });
 });
 
+
+// Create user
+app.post('/users', async (req, res) => {
+  try {
+    const user = new User(req.body);
+    await user.save();
+    res.status(201).send(user);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+
+// Get all users
+app.get('/users', async (req, res) => {
+  const users = await User.find();
+  res.send(users);
+});
+
+
+// Get user
+app.get('/users/:id', async (req, res) => {
+  const users = await User.params.id.find();
+  res.send(users);
+});
 module.exports = router;
