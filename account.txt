@@ -1,0 +1,190 @@
+How To Implement JWT Authentication in Express App?
+
+
+
+
+Implementing **JWT (JSON Web Token) authentication** in an Express.js application involves several steps, including setting up routes for registration/login, generating tokens, and protecting routes with middleware.
+
+Here's a full breakdown of how to implement JWT authentication:
+
+---
+
+### ✅ 1. Install Required Packages
+
+```bash
+npm install express jsonwebtoken bcryptjs body-parser dotenv
+```
+
+---
+
+### ✅ 2. Set Up Project Structure
+
+Example structure:
+
+```
+/project-root
+  |-- app.js
+  |-- .env
+  |-- /routes
+       |-- auth.js
+  |-- /middleware
+       |-- authMiddleware.js
+  |-- /controllers
+       |-- authController.js
+  |-- /models
+       |-- user.js (optional, if using DB)
+```
+
+---
+
+### ✅ 3. `.env` Configuration
+
+```env
+JWT_SECRET=your_jwt_secret_key
+JWT_EXPIRES_IN=1h
+```
+
+Load this using `dotenv` in your main file (`app.js`):
+
+```js
+require('dotenv').config();
+```
+
+---
+
+### ✅ 4. Basic User "Model" (Mock or Real DB)
+
+```js
+// models/user.js
+const users = []; // Replace with real DB in production
+
+module.exports = users;
+```
+
+---
+
+### ✅ 5. Auth Controller
+
+```js
+// controllers/authController.js
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const users = require('../models/user');
+
+const register = async (req, res) => {
+    const { username, password } = req.body;
+
+    const existingUser = users.find(u => u.username === username);
+    if (existingUser) return res.status(400).json({ message: 'User already exists' });
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    users.push({ username, password: hashedPassword });
+
+    res.status(201).json({ message: 'User registered successfully' });
+};
+
+const login = async (req, res) => {
+    const { username, password } = req.body;
+
+    const user = users.find(u => u.username === username);
+    if (!user) return res.status(401).json({ message: 'Invalid credentials' });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ message: 'Invalid credentials' });
+
+    const token = jwt.sign({ username }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN,
+    });
+
+    res.json({ token });
+};
+
+module.exports = { register, login };
+```
+
+---
+
+### ✅ 6. Auth Middleware
+
+```js
+// middleware/authMiddleware.js
+const jwt = require('jsonwebtoken');
+
+const authenticateJWT = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) return res.sendStatus(401);
+
+    const token = authHeader.split(' ')[1];
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if (err) return res.sendStatus(403);
+
+        req.user = user;
+        next();
+    });
+};
+
+module.exports = authenticateJWT;
+```
+
+---
+
+### ✅ 7. Routes Setup
+
+```js
+// routes/auth.js
+const express = require('express');
+const router = express.Router();
+const { register, login } = require('../controllers/authController');
+const authenticateJWT = require('../middleware/authMiddleware');
+
+router.post('/register', register);
+router.post('/login', login);
+
+// Example protected route
+router.get('/profile', authenticateJWT, (req, res) => {
+    res.json({ message: 'This is a protected route', user: req.user });
+});
+
+module.exports = router;
+```
+
+---
+
+### ✅ 8. Main App File
+
+```js
+// app.js
+const express = require('express');
+const app = express();
+require('dotenv').config();
+const authRoutes = require('./routes/auth');
+
+app.use(express.json());
+app.use('/api', authRoutes);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+```
+
+---
+
+### 🔒 Example Protected Request
+
+```http
+GET /api/profile
+Authorization: Bearer <your_jwt_token>
+```
+
+---
+
+### ✅ Notes
+
+* In production, replace the in-memory `users` array with a real database (e.g., MongoDB, PostgreSQL).
+* Always store passwords securely using bcrypt or similar.
+* Keep your JWT secret safe and strong.
+
+---
+
+Would you like this example turned into a GitHub repo or sample files?

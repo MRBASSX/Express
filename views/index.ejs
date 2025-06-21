@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
   <!-- <h1><%=links %></h1> -->
@@ -16,6 +17,17 @@
  <a href="/about">About</a>
   <a href="/">Home</a>
  <a href="/about">About</a>
+
+
+
+ <form action="/users/" method="post" class="form">
+
+  <input type="text" name="name" id="username" placeholder="Username">
+  <input type="email" name="email" id="email" placeholder="Email">
+  <input type="number" name="age" id="age"  placeholder="Age">
+
+  <input type="submit" value="Saved">
+ </form>
 
 
  

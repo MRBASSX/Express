@@ -9,10 +9,12 @@
   <ul class="navbar-blocks">
     <% for (var i = 0; i < links.length; i++) { %>
       <li class="nav-icon">
-        <a href="<%= links[i].href %>" class="nav-link">
-          <%= links[i].icon %>
-          <span class="link-text"><%= links[i].text %></span>
+        <a href="/users/<%=links[i].id %>" class="nav-link">
+         <%= links[i].id %> 
         </a>
+         
+          <span class="link-text"><%= links[i].name %></span>
+           <span class="link-text"><%= links[i].email %></span>
       </li>
     <% } %>
   </ul>

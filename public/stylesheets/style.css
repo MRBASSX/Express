@@ -11,3 +11,8 @@ a {
   color: aqua;
   font-size: 120px;
 }
+
+.form{
+  display: flex;
+  flex-direction: column;
+}

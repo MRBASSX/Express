@@ -25,7 +25,7 @@ app.use('/', indexRouter);
 
 
 // Replace "mydatabase" with your actual database name
-mongoose.connect('mongodb://localhost:27017/MyDatabaseConnect', {
+mongoose.connect('mongodb://localhost:27017/Ecommerce', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
