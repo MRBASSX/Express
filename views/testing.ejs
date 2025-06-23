@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MovieMania - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: #181818;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1467987506553-8f3916508521?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      padding: 90px 20px 60px 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 14px;
+      text-shadow: 0 2px 8px #000;
+    }
+    .hero p {
+      font-size: 1.5rem;
+      color: #f5c518;
+      text-shadow: 0 2px 8px #000;
+    }
+    .hero button {
+      margin-top: 32px;
+      padding: 14px 38px;
+      background: #f5c518;
+      border: none;
+      border-radius: 23px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-weight: bold;
+      color: #222;
+      box-shadow: 0 2px 8px #0007;
+      transition: background 0.2s;
+    }
+    .hero button:hover {
+      background: #ffe082;
+    }
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 24px;
+      color: #f5c518;
+    }
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+    }
+    .movie-card {
+      background: #232323;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #0004;
+      transition: transform 0.18s;
+      cursor: pointer;
+    }
+    .movie-card:hover {
+      transform: translateY(-6px) scale(1.03);
+    }
+    .movie-card img {
+      width: 100%;
+      height: 310px;
+      object-fit: cover;
+      display: block;
+    }
+    .movie-card-content {
+      padding: 18px 15px 12px 15px;
+    }
+    .movie-card-title {
+      margin: 0 0 10px 0;
+      font-weight: bold;
+      font-size: 1.13rem;
+    }
+    .movie-card-details {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1rem;
+    }
+    .movie-card-rating {
+      color: #f5c518;
+      font-weight: 600;
+    }
+    .movie-card-year {
+      color: #aaa;
+    }
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1.1rem; }
+      .section h2 { font-size: 1.3rem; }
+      .movie-card img { height: 180px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Welcome to MovieMania</h1>
+    <p>Discover trending movies and your next favorite film</p>
+    <button>Browse All Movies</button>
+  </div>
+  <div class="section">
+    <h2>Trending Now</h2>
+    <div class="movie-grid">
+       <%  for(let i = 0; i < 2; i++){ %>
+
+         <div class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg" alt="Inception">
+        <div class="movie-card-content">
+          <div class="movie-card-title">Inception</div>
+          <div class="movie-card-details">
+            <span class="movie-card-rating">★ 8.8</span>
+            <span class="movie-card-year">2010</span>
+          </div>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg" alt="Interstellar">
+        <div class="movie-card-content">
+          <div class="movie-card-title">Interstellar</div>
+          <div class="movie-card-details">
+            <span class="movie-card-rating">★ 8.6</span>
+            <span class="movie-card-year">2014</span>
+          </div>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/1hRoyzDtpgMU7Dz4JF22RANzQO7.jpg" alt="The Dark Knight">
+        <div class="movie-card-content">
+          <div class="movie-card-title">The Dark Knight</div>
+          <div class="movie-card-details">
+            <span class="movie-card-rating">★ 9.0</span>
+            <span class="movie-card-year">2008</span>
+          </div>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg" alt="Avengers: Endgame">
+        <div class="movie-card-content">
+          <div class="movie-card-title">Avengers: Endgame</div>
+          <div class="movie-card-details">
+            <span class="movie-card-rating">★ 8.4</span>
+            <span class="movie-card-year">2019</span>
+          </div>
+        </div>
+      </div>
+
+
+
+   <% } %>
+    </div>
+  </div>
+
+
+    <div class="section">
+    <h2>Latest Movie</h2>
+    <div class="movie-grid">
+       <%  for(let i = 0; i < latest.length; i++){ %>
+
+        
+     <div class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg" alt="Interstellar">
+        <div class="movie-card-content">
+          <div class="movie-card-title"><%=latest[i].name %></div>
+          <div class="movie-card-details">
+            <span class="movie-card-rating">★ <%=latest[i].height %></span>
+            <span class="movie-card-year"><%=latest[i].age %></span>
+          </div>
+        </div>
+      </div>
+     
+    
+
+
+
+   <% } %>
+    </div>
+  </div>
+</body>
+</html>
+   
+ 
+
+
+
+

@@ -10,17 +10,84 @@ const User = require('../models/User');
 // let idCounter = 1;
 
 
-/* GET home page. */
-router.get('/', async function(req, res, next) {
+/* GET Testing page. */
+router.get('/', function(req, res, next) {
 
-// const user = [
-//   {}
-// ]
- const users = await User.find() ;
+  const value = [
+    {name:"Sala",
+    age:100,
+    height:'6ft'
+
+    }
+    ,
+    {name:"Aziz",
+    age:100,
+    height:'6ft'
+
+    },
+    {name:"Mariam",
+    age:100,
+    height:'6ft'
+
+    },
+    {name:"Ramzi",
+    age:100,
+    height:'6ft'
+
+    },
+    {name:"Eyeson",
+    age:100,
+    height:'6ft'
+
+    },
+     {name:"Acheampong",
+    age:100,
+    height:'6ft'
+
+    }
+   
+  ];
+
+  res.render('testing',{latest : value,trending : value});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// /* GET home page. */
+// router.get('/', async function(req, res, next) {
+
+// // const user = [
+// //   {}
+// // ]
+//  const users = await User.find() ;
  
 
- res.render('index', { links: users });
-});
+//  res.render('index', { links: users });
+// });
 
 /* GET About page. */
 router.get('/about', function(req, res, next) {
