@@ -3,7 +3,8 @@
 
 2 . Example structure:
 
-```
+Your Project tree should look like this 
+
 /project-root
   |-- app.js
   |-- .env
@@ -16,3 +17,113 @@
   |-- /models
        |-- user.js (optional, if using DB)
 ```
+
+3. Create .env , controller , middleware , models In Your Root Folder
+
+4. In .env File  Add This Code 
+    JWT_SECRET=your_jwt_secret_key
+    JWT_EXPIRES_IN=1h
+
+5. Load  .env  using `dotenv` in your main file (`app.js`)
+Example using --> require('dotenv').config(); in your app.js
+
+6. Create  User.js in models Folder 
+  Example -->  models/user.js
+
+  Paste Code below
+
+     @Custom Database
+
+   const users = []; // Replace with real DB in production
+   module.exports = users;
+
+   @MongoDB
+   const mongoose = require('mongoose');
+   const userSchema = new mongoose.Schema({
+   name: String,
+   email: String,
+  age: Number
+     });
+
+   module.exports = mongoose.model('User', userSchema);
+
+
+
+7. Create authController.js In controller Folder Paste Code Below
+   // controllers/authController.js
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const users = require('../models/user');
+
+const register = async (req, res) => {
+    const { username, password } = req.body;
+
+    const existingUser = users.find(u => u.username === username);
+    if (existingUser) return res.status(400).json({ message: 'User already exists' });
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    users.push({ username, password: hashedPassword });
+
+    res.status(201).json({ message: 'User registered successfully' });
+};
+
+const login = async (req, res) => {
+    const { username, password } = req.body;
+
+    const user = users.find(u => u.username === username);
+    if (!user) return res.status(401).json({ message: 'Invalid credentials' });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ message: 'Invalid credentials' });
+
+    const token = jwt.sign({ username }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN,
+    });
+
+    res.json({ token });
+};
+
+module.exports = { register, login };
+
+
+8. Create authMiddleware.js in middleware And Paste Below
+
+   // middleware/authMiddleware.js
+const jwt = require('jsonwebtoken');
+
+const authenticateJWT = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) return res.sendStatus(401);
+
+    const token = authHeader.split(' ')[1];
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if (err) return res.sendStatus(403);
+
+        req.user = user;
+        next();
+    });
+};
+
+module.exports = authenticateJWT;
+
+
+
+9. Create auth.js in the routes Folder
+    // routes/auth.js
+const express = require('express');
+const router = express.Router();
+const { register, login } = require('../controllers/authController');
+const authenticateJWT = require('../middleware/authMiddleware');
+
+router.post('/register', register);
+router.post('/login', login);
+
+// Example protected route
+router.get('/profile', authenticateJWT, (req, res) => {
+    res.json({ message: 'This is a protected route', user: req.user });
+});
+
+module.exports = router;
+   
