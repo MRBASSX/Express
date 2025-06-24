@@ -1,0 +1,18 @@
+
+1 . npm install express jsonwebtoken bcryptjs body-parser dotenv
+
+2 . Example structure:
+
+```
+/project-root
+  |-- app.js
+  |-- .env
+  |-- /routes
+       |-- auth.js
+  |-- /middleware
+       |-- authMiddleware.js
+  |-- /controllers
+       |-- authController.js
+  |-- /models
+       |-- user.js (optional, if using DB)
+```
