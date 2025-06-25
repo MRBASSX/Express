@@ -11,7 +11,7 @@ const User = require('../models/User');
 
 
 /* GET Testing page. */
-router.get('/', function(req, res, next) {
+router.get('/test', function(req, res, next) {
 
   const latest = [
     {name:"Sala",
@@ -121,17 +121,17 @@ router.get('/', function(req, res, next) {
 
 
 
-// /* GET home page. */
-// router.get('/', async function(req, res, next) {
+/* GET home page. */
+router.get('/', async function(req, res, next) {
 
-// // const user = [
-// //   {}
-// // ]
-//  const users = await User.find() ;
+// const user = [
+//   {}
+// ]
+ const users = await User.find() ;
  
 
-//  res.render('index', { links: users });
-// });
+ res.render('index', { links: users });
+});
 
 /* GET About page. */
 router.get('/about', function(req, res, next) {
