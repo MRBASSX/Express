@@ -12,8 +12,8 @@ router.post('/auth', async (req,res)=> {
     
 })
 
-router.get("/auth",(req,res)=>{
+router.get("/auth",async (req,res)=>{
 
-    const 
+    const user = await AuthModel.find();
 
 })
