@@ -1,24 +1,57 @@
 <!-- navbar.ejs -->
- <script >
+
+<!-- data = [{}] -->
+<% links.forEach((MyData)=>{ %>
+
+<div class=""><%=MyData.age %></div>
+<div class=""> <%=MyData.name %></div>
+<div class=""> <%=MyData.height %></div>
+
+<% }) %>
+
+<% links.forEach((MyData)=>{ %>
+  
+<div class="">Salamatu</div>
     
- </script>
-<nav class="navbar">
-  <ul class="navbar-blocks">
-<!-- navbar.ejs -->
-<nav class="navbar">
-  <ul class="navbar-blocks">
-    <% for (var i = 0; i < links.length; i++) { %>
-      <li class="nav-icon">
-        <a href="/users/<%=links[i].id %>" class="nav-link">
-         <%= links[i].id %> 
-        </a>
-         
-          <span class="link-text"><%= links[i].name %></span>
-           <span class="link-text"><%= links[i].email %></span>
-      </li>
-    <% } %>
-  </ul>
-</nav>
-  </ul>
-</nav>
+<%  }) %>
+<% links.forEach((Mylinks)=>{ %>
+  <div class=""><%=Mylinks.age %></div>
+ 
+  
+  
+  
+<% }) %>
+
+<%  links.forEach((MylinksData)=>{ %>
+
+
+
+ <div class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg" alt="Interstellar">
+        <div class="movie-card-content">
+          <div class="movie-card-title"><%=MylinksData.name %></div>
+          <div class="movie-card-details">
+            <span class="movie-card-rating">★ 8.6</span>
+            <span class="movie-card-year">2014</span>
+          </div>
+        </div>
+      </div>
+
+
+
+
+<% }) %>
+
+
+
+
+
+
+
+
+ 
+
+
+
+
 

@@ -33,6 +33,28 @@
  
 
 
+ <script >
+    
+ </script>
+<nav class="navbar">
+  <ul class="navbar-blocks">
+<!-- navbar.ejs -->
+<nav class="navbar">
+  <ul class="navbar-blocks">
+    <% links.forEach((links)=>{ %>
+      <li class="nav-icon">
+        <a href="/users/<%=links.id %>" class="nav-link">
+         <%= links.age %> 
+        </a>
+         
+          <span class="link-text"><%= links.name %></span>
+           <span class="link-text"><%= links.height %></span>
+      </li>
+    <% }) %>
+  </ul>
+</nav>
+  </ul>
+</nav>
 
 
   

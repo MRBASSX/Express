@@ -13,7 +13,7 @@ const User = require('../models/User');
 /* GET Testing page. */
 router.get('/', function(req, res, next) {
 
-  const value = [
+  const latest = [
     {name:"Sala",
     age:100,
     height:'6ft'
@@ -48,7 +48,51 @@ router.get('/', function(req, res, next) {
    
   ];
 
-  res.render('testing',{latest : value,trending : value});
+  const trending = [
+    {name:"Sala",
+    age:100,
+    height:'6ft'
+
+    }
+    ,
+    {name:"Aziz",
+    age:100,
+    height:'6ft'
+
+    },
+    {name:"Mariam",
+    age:100,
+    height:'6ft'
+
+    },
+    {name:"Ramzi",
+    age:100,
+    height:'6ft'
+
+    },
+    {name:"Eyeson",
+    age:100,
+    height:'6ft'
+
+    },
+     {name:"Acheampong",
+    age:100,
+    height:'6ft'
+
+    },
+    {name:"Acheampong",
+    age:100,
+    height:'6ft'
+
+    }
+   
+  ];
+
+  const likes = "I Like this More";
+
+  console.log(latest)
+
+  res.render('testing',{latest : latest, trending : trending, like : likes,links : trending});
 });
 
 
