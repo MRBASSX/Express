@@ -4,10 +4,16 @@ const AuthModel = require('../models/authModel');
 
 
 
-router.post('/create', async (req,res)=> {
+router.post('/auth', async (req,res)=> {
 
     const user  = new AuthModel(req.body);
     const  Saved = await user.save();
     res.status(200).json(saved);
     
+})
+
+router.get("/auth",(req,res)=>{
+
+    const 
+
 })
