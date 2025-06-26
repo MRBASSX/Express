@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/Router');
 var indexAuth = require('./routes/auth');
+var indexCart = require('./routes/Cart');
 const mongoose = require('mongoose');
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/',indexAuth);
+app.use("/",indexCart);
 
 
 // Replace "mydatabase" with your actual database name
