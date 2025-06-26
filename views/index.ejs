@@ -1,63 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sports Home</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
-  <!-- <h1><%=links %></h1> -->
-   
-
-    <%- include('nav')%>
-
-
-    <a href="/">Home</a>
- <a href="/about">About</a>
-  <a href="/">Home</a>
- <a href="/about">About</a>
-
-
-
- <form action="/users/" method="post" class="form">
-
-  <input type="text" name="name" id="username" placeholder="Username">
-  <input type="email" name="email" id="email" placeholder="Email">
-  <input type="number" name="age" id="age"  placeholder="Age">
-
-  <input type="submit" value="Saved">
- </form>
-
-
- 
-
-
- <script >
-    
- </script>
-<nav class="navbar">
-  <ul class="navbar-blocks">
-<!-- navbar.ejs -->
-<nav class="navbar">
-  <ul class="navbar-blocks">
-    <% links.forEach((links)=>{ %>
-      <li class="nav-icon">
-        <a href="/users/<%=links.id %>" class="nav-link">
-         <%= links.age %> 
-        </a>
-         
-          <span class="link-text"><%= links.name %></span>
-           <span class="link-text"><%= links.height %></span>
-      </li>
-    <% }) %>
-  </ul>
-</nav>
-  </ul>
-</nav>
-
-
-  
-  
+  <header>
+    <div class="container">
+      <h1>SportsZone</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/news">News</a>
+        <a href="/scores">Scores</a>
+        <a href="/teams">Teams</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Welcome to SportsZone</h2>
+      <p>Your daily dose of sports news, highlights, and updates!</p>
+      <a href="#" class="btn">Explore Now</a>
+    </div>
+  </section>
+  <section class="latest-news container">
+    <h2>Latest News</h2>
+    <div class="news-grid">
+      <article>
+        <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=400&q=80" alt="Football"/>
+        <h3>Thrilling Football Finals</h3>
+        <p>The championship match ends with a breathtaking last-minute goal.</p>
+        <a href="#">Read more</a>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1505843276877-05d0a0c8e8a0?auto=format&fit=crop&w=400&q=80" alt="Basketball"/>
+        <h3>Basketball Playoffs Heat Up</h3>
+        <p>Top teams battle it out in the semi-finals for a spot in the grand finale.</p>
+        <a href="#">Read more</a>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Tennis"/>
+        <h3>Tennis Star Makes History</h3>
+        <p>New record set at the international tennis tournament.</p>
+        <a href="#">Read more</a>
+      </article>
+    </div>
+  </section>
+  <section class="featured-sports">
+    <div class="container">
+      <h2>Featured Sports</h2>
+      <div class="sports-list">
+        <div class="sport-card">
+          <img src="https://images.unsplash.com/photo-1461897104016-0b3b00cc81ee?auto=format&fit=crop&w=400&q=80" alt="Soccer"/>
+          <h4>Soccer</h4>
+        </div>
+        <div class="sport-card">
+          <img src="https://images.unsplash.com/photo-1509228468518-caa204b6a4ba?auto=format&fit=crop&w=400&q=80" alt="Cricket"/>
+          <h4>Cricket</h4>
+        </div>
+        <div class="sport-card">
+          <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=400&q=80" alt="Basketball"/>
+          <h4>Basketball</h4>
+        </div>
+        <div class="sport-card">
+          <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Tennis"/>
+          <h4>Tennis</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 SportsZone. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>

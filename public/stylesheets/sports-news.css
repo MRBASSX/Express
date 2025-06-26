@@ -31,36 +31,54 @@ nav a {
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
 }
-nav a:hover {
-  color: #e63946;
+nav a.active, nav a:hover {
+  background: #e63946;
+  color: #fff;
 }
 
-.hero {
-  background: linear-gradient(to right, #1d3557, #457b9d), url('https://images.unsplash.com/photo-1505843276877-05d0a0c8e8a0?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-  color: #fff;
-  text-align: center;
-  padding: 5rem 0 4rem 0;
-  position: relative;
+main {
+  margin-top: 2rem;
 }
-.hero::after {
-  content: "";
-  position: absolute;
-  left:0; right:0; top:0; bottom:0;
-  background:rgba(29,53,87,0.5);
-  z-index:1;
+
+.headline-news {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  margin-bottom: 2.5rem;
 }
-.hero-content {
-  position: relative;
-  z-index:2;
+.headline-img {
+  flex: 1 1 350px;
+  min-width: 300px;
+  max-width: 500px;
+  overflow: hidden;
 }
-.hero h2 {
-  font-size: 2.7rem;
-  margin-bottom: 0.7rem;
+.headline-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.hero p {
-  font-size: 1.3rem;
+.headline-content {
+  flex: 2 1 450px;
+  padding: 2.4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.headline-content h2 {
+  font-size: 2rem;
+  color: #1d3557;
+  margin-bottom: 1rem;
+}
+.headline-content p {
+  font-size: 1.15rem;
   margin-bottom: 1.5rem;
+  color: #444;
 }
 .btn {
   background: #e63946;
@@ -71,25 +89,25 @@ nav a:hover {
   font-weight: bold;
   font-size: 1rem;
   transition: background 0.2s;
+  width: fit-content;
 }
 .btn:hover {
   background: #457b9d;
 }
 
-.latest-news {
-  margin: 3rem auto;
-}
-.latest-news h2 {
+.news-list h2 {
   text-align: center;
   margin-bottom: 2rem;
   color: #1d3557;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
 }
-.news-grid {
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 2rem;
 }
-.news-grid article {
+.grid article {
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
@@ -98,24 +116,25 @@ nav a:hover {
   display: flex;
   flex-direction: column;
 }
-.news-grid article:hover {
+.grid article:hover {
   box-shadow: 0 8px 28px rgba(0,0,0,0.14);
 }
-.news-grid img {
+.grid img {
   width: 100%;
-  height: 170px;
+  height: 150px;
   object-fit: cover;
 }
-.news-grid h3 {
-  margin: 1rem;
-  font-size: 1.2rem;
+.grid h3 {
+  margin: 1rem 1rem 0.5rem 1rem;
+  font-size: 1.15rem;
+  color: #457b9d;
 }
-.news-grid p {
+.grid p {
   margin: 0 1rem 1rem 1rem;
   color: #555;
   font-size: 0.97rem;
 }
-.news-grid a {
+.grid a {
   margin: 0 1rem 1.2rem 1rem;
   color: #1d3557;
   text-decoration: none;
@@ -123,46 +142,8 @@ nav a:hover {
   align-self: flex-start;
   transition: color 0.2s;
 }
-.news-grid a:hover {
+.grid a:hover {
   color: #e63946;
-}
-
-.featured-sports {
-  background: #fff;
-  padding: 3rem 0;
-}
-.featured-sports h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #1d3557;
-}
-.sports-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-}
-.sport-card {
-  background: #f1faee;
-  border-radius: 10px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-  width: 170px;
-  text-align: center;
-  padding: 1.2rem 0.5rem;
-  transition: box-shadow 0.2s;
-}
-.sport-card:hover {
-  box-shadow: 0 6px 20px rgba(0,0,0,0.13);
-}
-.sport-card img {
-  width: 100%;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 6px;
-}
-.sport-card h4 {
-  margin: 1rem 0 0.5rem 0;
-  color: #457b9d;
 }
 
 footer {
@@ -174,12 +155,26 @@ footer {
   font-size: 1rem;
 }
 
-@media (max-width: 700px) {
-  .sports-list {
+@media (max-width: 900px) {
+  .headline-news {
     flex-direction: column;
-    align-items: center;
   }
+  .headline-img,
+  .headline-content {
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+  }
+  .headline-content {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 700px) {
   .container {
     width: 98%;
+  }
+  .grid {
+    grid-template-columns: 1fr;
   }
 }
