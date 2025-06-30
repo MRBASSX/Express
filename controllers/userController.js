@@ -12,7 +12,7 @@ const createUser = async (req,res)=>{
         
     } else {
 
-        res.
+        
         
     }
 
