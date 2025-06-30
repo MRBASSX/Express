@@ -26,7 +26,7 @@ app.use('/', indexRouter);
 
 
 
-// Replace "mydatabase" with your actual database name
+// Replace "Ecommerce" with your actual database name
 mongoose.connect('mongodb://localhost:27017/Ecommerce').then(() => {
 
   console.log('✅ Connected to MongoDB');

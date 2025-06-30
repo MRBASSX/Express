@@ -1,15 +1,31 @@
 var express = require('express');
 var router = express.Router();
 
+const User = require("../models/userModel")
+
+
+
+
+
+
 
 
 /* GET index page. */
 router.get('/', function(req, res, next) {
 
+  const Data = User.find();
+  res.json([{}]);
+
+
+
+
   video = "Sporst replay......................";
 
   res.render('index',{video:video});
 });
+
+
+
 /* GET page1 page. */
 router.get('/news', function(req, res, next) {
 
