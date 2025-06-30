@@ -1,11 +1,11 @@
-import { Schema, model } from "mongoose"
+const mongoose = require("mongoose")
 
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   name:String,
   age:String,
   gender:String  
 })
 
- res.redirect("/");
-export default model("User",userSchema)
+
+module.exports = mongoose.model("User",userSchema)
