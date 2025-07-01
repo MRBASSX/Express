@@ -15,7 +15,7 @@ router.get('/', async function(req, res, next) {
 
   const users =  await Users.find();
   res.send(users);
-  // res.json([{}])
+  res.json([{}])
 
 
 
