@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const User = require("../models/userModel")
+const Users = require("../models/userModel")
 
 
 
@@ -11,10 +11,11 @@ const User = require("../models/userModel")
 
 
 /* GET index page. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
 
-  const Data = User.find();
-  res.json([{}]);
+  const users =  await Users.find();
+  res.send(users);
+  // res.json([{}])
 
 
 
@@ -116,6 +117,56 @@ router.get('/contact', function(req, res, next) {
 
 
 // Managing Database
+
+//////////////////////////
+// Create user
+router.post('/users', async (req, res) => {
+
+  try {
+    const user = new User(req.body);
+    await user.save();
+    // res.status(201).send(user);
+    res.redirect("/")
+
+  } catch (err) {
+
+    res.status(400).send(err);
+  }
+});
+
+
+// Get all users
+router.get('/users', async (req, res) => {
+try {
+
+    const User = await User.find();
+      res.json(User);
+    res.send(users);
+  
+} catch (error) {
+  
+  res.send(error)
+}
+});
+
+
+// Get Single user
+router.get('/users/:id', async (req, res) => {
+
+  try {
+    const users = await User.findById(req.params.id);
+
+  res.send(users);
+    
+  } catch (error) {
+   
+     res.send(error);
+  }
+});
+
+
+//////////////////////////
+
 
 
 
