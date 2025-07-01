@@ -14,7 +14,7 @@ router.get('/', async function(req, res, next) {
 
   const users =  await Users.find();
   res.send(users);
-  res.json([{}])
+  // res.json([{}])
 
 
 
@@ -62,6 +62,14 @@ router.get('/page5', function(req, res, next) {
   res.render('page5',{video:video});
 });
 
+
+
+/* GET page5 page. */
+router.get('/mary', async function(req, res, next) {
+ const  mary =  await Users.find();
+
+  res.send(mary);
+});
 
 
 

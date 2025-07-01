@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/Router');
 
-const mongoose = require('mongoose');
+const mongo= require('mongoose');
 var app = express();
 
 
@@ -27,7 +27,7 @@ app.use('/', indexRouter);
 
 
 // Replace "Ecommerce" with your actual database name
-mongoose.connect('mongodb://localhost:27017/Ecommerce').then(() => {
+mongo.connect('mongodb://localhost:27017/Ecommerce').then(() => {
 
   console.log('✅ Connected to MongoDB');
 
