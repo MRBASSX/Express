@@ -3,26 +3,62 @@ var router = express.Router();
 const Users = require("../models/userModel")
 
 
-
-
-
-
-
-
 /* GET index page. */
 router.get('/', async function(req, res, next) {
 
   const users =  await Users.find();
   res.send(users);
   // res.json([{}])
-
-
-
-
   video = "Sporst replay......................";
 
   res.render('index',{video:video});
 });
+
+
+router.get("/user/:id",async (req,res) => {
+
+  const user = await Users.findById(req.params.id);
+  if (user){
+
+    return res.render("index",{user:user})
+  }
+
+  
+})
+
+
+router.post("/user", async (req,res)=>{
+
+  const Users = new Users(req.body);
+  const saved = await Users.save();
+  if(saved){
+
+    res.redirect("/")
+
+  }
+  
+
+})
+
+
+router.put("/user/:id",async (req,res) => {
+
+
+  const update = await Users.findByIdAndUpdate(req.params.id,req.body,{new:true})
+  
+})
+
+
+router.delete("/user/:id",async (req,res) => {
+
+
+  const destroy = await Users.findByIdAndDelete(req.params.id)
+
+
+  
+})
+
+
 
 
 
