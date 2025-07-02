@@ -3,58 +3,28 @@ var router = express.Router();
 const Users = require("../models/userModel")
 
 
-/* GET index page. */
-router.get('/', async function(req, res, next) {
 
-  const users =  await Users.find();
-  res.send(users);
-  // res.json([{}])
-  video = "Sporst replay......................";
+router.post("/user",async (req,res,next) => {
 
-  res.render('index',{video:video});
-});
+  const user = new Users(req.body);
+  const  saved = await user.save();
 
+  if (saved) {
 
-router.get("/user/:id",async (req,res) => {
-
-  const user = await Users.findById(req.params.id);
-  if (user){
-
-    return res.render("index",{user:user})
-  }
-
-  
-})
-
-
-router.post("/user", async (req,res)=>{
-
-  const Users = new Users(req.body);
-  const saved = await Users.save();
-  if(saved){
-
-    res.redirect("/")
+    res.redirect("/");
 
   }
-  
 
-})
-
-
-router.put("/user/:id",async (req,res) => {
-
-
-  const update = await Users.findByIdAndUpdate(req.params.id,req.body,{new:true})
   
 })
 
 
-router.delete("/user/:id",async (req,res) => {
 
+router.get("/",async (req,res,next) => {
 
-  const destroy = await Users.findByIdAndDelete(req.params.id)
+const users = await Users.find();
 
-
+  res.render("home",{users : users })
   
 })
 
@@ -62,50 +32,6 @@ router.delete("/user/:id",async (req,res) => {
 
 
 
-/* GET page1 page. */
-router.get('/news', function(req, res, next) {
-
-  video = "Sporst replay";
-
-  res.render('news',{video:video});
-});
-/* GET page2 page. */
-router.get('/scores', function(req, res, next) {
-
-  video = "Sporst replay";
-
-  res.render('scores',{video:video});
-});
-/* GET page3 page. */
-router.get('/teams', function(req, res, next) {
-
-  video = "Sporst replay";
-
-  res.render('teams',{video:video});
-});
-/* GET page4 page. */
-router.get('/contact', function(req, res, next) {
-
-  video = "Sporst replay";
-
-  res.render('contact',{video:video});
-});
-/* GET page5 page. */
-router.get('/page5', function(req, res, next) {
-
-  video = "Sporst replay";
-
-  res.render('page5',{video:video});
-});
-
-
-
-/* GET page5 page. */
-router.get('/mary', async function(req, res, next) {
- const  mary =  await Users.find();
-
-  res.send(mary);
-});
 
 
 
@@ -132,80 +58,227 @@ router.get('/mary', async function(req, res, next) {
 
 
 
-/* GET home page. */
-router.get('/', async function(req, res, next) {
 
-// const user = [
-//   {}
-// ]
- const users = await User.find() ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// /* GET index page. */
+// router.get('/', async function(req, res, next) {
+
+//   const users =  await Users.find();
+//   res.send(users);
+//   // res.json([{}])
+//   video = "Sporst replay......................";
+
+//   res.render('index',{video:video});
+// });
+
+
+// router.get("/user/:id",async (req,res) => {
+
+//   const user = await Users.findById(req.params.id);
+//   if (user){
+
+//     return res.render("index",{user:user})
+//   }
+
+  
+// })
+
+
+// router.post("/user", async (req,res)=>{
+
+//   const Users = new Users(req.body);
+//   const saved = await Users.save();
+//   if(saved){
+
+//     res.redirect("/")
+
+//   }
+  
+
+// })
+
+
+// router.put("/user/:id",async (req,res) => {
+
+
+//   const update = await Users.findByIdAndUpdate(req.params.id,req.body,{new:true})
+  
+// })
+
+
+// router.delete("/user/:id",async (req,res) => {
+
+
+//   const destroy = await Users.findByIdAndDelete(req.params.id)
+
+
+  
+// })
+
+
+
+
+
+// /* GET page1 page. */
+// router.get('/news', function(req, res, next) {
+
+//   video = "Sporst replay";
+
+//   res.render('news',{video:video});
+// });
+// /* GET page2 page. */
+// router.get('/scores', function(req, res, next) {
+
+//   video = "Sporst replay";
+
+//   res.render('scores',{video:video});
+// });
+// /* GET page3 page. */
+// router.get('/teams', function(req, res, next) {
+
+//   video = "Sporst replay";
+
+//   res.render('teams',{video:video});
+// });
+// /* GET page4 page. */
+// router.get('/contact', function(req, res, next) {
+
+//   video = "Sporst replay";
+
+//   res.render('contact',{video:video});
+// });
+// /* GET page5 page. */
+// router.get('/page5', function(req, res, next) {
+
+//   video = "Sporst replay";
+
+//   res.render('page5',{video:video});
+// });
+
+
+
+// /* GET page5 page. */
+// router.get('/mary', async function(req, res, next) {
+//  const  mary =  await Users.find();
+
+//   res.send(mary);
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// /* GET home page. */
+// router.get('/', async function(req, res, next) {
+
+// // const user = [
+// //   {}
+// // ]
+//  const users = await User.find() ;
  
 
- res.render('index', { links: users });
-});
+//  res.render('index', { links: users });
+// });
 
-/* GET About page. */
-router.get('/about', function(req, res, next) {
-  res.render('about', { title: 'Express' });
-});
+// /* GET About page. */
+// router.get('/about', function(req, res, next) {
+//   res.render('about', { title: 'Express' });
+// });
 
-/* GET About page. */
-router.get('/contact', function(req, res, next) {
-  res.render('about', { title: 'Express' });
-});
-
-
+// /* GET About page. */
+// router.get('/contact', function(req, res, next) {
+//   res.render('about', { title: 'Express' });
+// });
 
 
 
 
-// Managing Database
-
-//////////////////////////
-// Create user
-router.post('/users', async (req, res) => {
-
-  try {
-    const user = new User(req.body);
-    await user.save();
-    // res.status(201).send(user);
-    res.redirect("/")
-
-  } catch (err) {
-
-    res.status(400).send(err);
-  }
-});
 
 
-// Get all users
-router.get('/users', async (req, res) => {
-try {
+// // Managing Database
 
-    const User = await User.find();
-      res.json(User);
-    res.send(users);
+// //////////////////////////
+// // Create user
+// router.post('/users', async (req, res) => {
+
+//   try {
+//     const user = new User(req.body);
+//     await user.save();
+//     // res.status(201).send(user);
+//     res.redirect("/")
+
+//   } catch (err) {
+
+//     res.status(400).send(err);
+//   }
+// });
+
+
+// // Get all users
+// router.get('/users', async (req, res) => {
+// try {
+
+//     const User = await User.find();
+//       res.json(User);
+//     res.send(users);
   
-} catch (error) {
+// } catch (error) {
   
-  res.send(error)
-}
-});
+//   res.send(error)
+// }
+// });
 
 
-// Get Single user
-router.get('/users/:id', async (req, res) => {
+// // Get Single user
+// router.get('/users/:id', async (req, res) => {
 
-  try {
-    const users = await User.findById(req.params.id);
+//   try {
+//     const users = await User.findById(req.params.id);
 
-  res.send(users);
+//   res.send(users);
     
-  } catch (error) {
+//   } catch (error) {
    
-     res.send(error);
-  }
-});
+//      res.send(error);
+//   }
+// });
 
 
 //////////////////////////
