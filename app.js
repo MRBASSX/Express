@@ -7,7 +7,7 @@ var indexRouter = require('./routes/Router');
 var indexAuth = require('./routes/account/auth');
 var sportsRoute = require('./routes/sports/sports');
 var formsRoute = require('./routes/account/form');
-// require('dotenv').config();
+require('dotenv').config();
 
 const mongo= require('mongoose');
 var app = express();
