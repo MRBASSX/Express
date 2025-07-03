@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const Users = require("../models/userModel")
+// const Users = require("../models/userModel")
 
 
 
@@ -87,58 +87,73 @@ const Users = require("../models/userModel")
 
 
 
-/* GET page1 page. */
-router.get('/', function(req, res, next) {
+// /* GET Index Home page. */
+// router.get('/', function(req, res, next) {
 
-  video = "Sporst replay";
+//   video = "Sporst replay";
 
-  res.render('news',{video:video});
-});
+//   res.render('sports/index',{video:video});
+// });
 
-/* GET page1 page. */
-router.get('/news', function(req, res, next) {
+// /* GET news page. */
+// router.get('/news', function(req, res, next) {
 
-  video = "Sporst replay";
+//   video = "Sporst replay";
 
-  res.render('news',{video:video});
-});
-/* GET page2 page. */
-router.get('/scores', function(req, res, next) {
+//   res.render('sports/news',{video:video});
+// });
 
-  video = "Sporst replay";
+// /* GET scores page. */
+// router.get('/scores', function(req, res, next) {
 
-  res.render('scores',{video:video});
-});
-/* GET page3 page. */
-router.get('/teams', function(req, res, next) {
+//   video = "Sporst replay";
 
-  video = "Sporst replay";
+//   res.render('sports/scores',{video:video});
+// });
+// /* GET teams page. */
+// router.get('/teams', function(req, res, next) {
 
-  res.render('teams',{video:video});
-});
-/* GET page4 page. */
-router.get('/contact', function(req, res, next) {
+//   video = "Sporst replay";
 
-  video = "Sporst replay";
+//   res.render('sports/teams',{video:video});
+// });
+// /* GET contact page. */
+// router.get('/contact', function(req, res, next) {
 
-  res.render('contact',{video:video});
-});
-/* GET page5 page. */
-router.get('/page5', function(req, res, next) {
+//   video = "Sporst replay";
 
-  video = "Sporst replay";
-
-  res.render('page5',{video:video});
-});
+//   res.render('sports/contact',{video:video});
+// });
 
 
 
-/* GET page5 page. */
-router.get('/mary', async function(req, res, next) {
- const  mary =  await Users.find();
 
-  res.send(mary);
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// /* GET page5 page. */
+// router.get('/mary', async function(req, res, next) {
+//  const  mary =  await Users.find();
+
+//   res.send(mary);
+// });
 
 
 

@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/Router');
 var indexAuth = require('./routes/auth');
+var sportsRoute = require('./routes/sports/sports');
 // require('dotenv').config();
 
 const mongo= require('mongoose');
@@ -24,8 +25,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', indexRouter);
+app.use('/', sportsRoute);
 app.use('/', indexAuth);
+app.use('/', indexRouter);
+
 
 
 
