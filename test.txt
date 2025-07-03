@@ -153,3 +153,33 @@ Use Postman or curl to:
 ---
 
 Would you like me to help you set this up with a GitHub repo or add features like update/delete?
+
+
+    // Example using Mongoose (for MongoDB)
+    const User = require('../models/User'); // Assuming you have a User model
+
+    app.post('/register', async (req, res) => {
+        const { username, email } = req.body;
+
+        try {
+            // Check if user exists by username
+            const userByUsername = await User.findOne({ username });
+            if (userByUsername) {
+                return res.status(400).json({ message: 'Username already exists.' });
+            }
+
+            // Check if user exists by email
+            const userByEmail = await User.findOne({ email });
+            if (userByEmail) {
+                return res.status(400).json({ message: 'Email already registered.' });
+            }
+
+            // If neither exists, proceed with user creation
+            // ... create new user ...
+            res.status(201).json({ message: 'User registered successfully.' });
+
+        } catch (error) {
+            console.error('Error checking user existence:', error);
+            res.status(500).json({ message: 'Server error.' });
+        }
+    });
