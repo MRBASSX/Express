@@ -15,7 +15,7 @@ const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const RegisterUser = new Users({ username, email, password: hashedPassword });
     const RegisteredUserSaved = await RegisterUser.save();
-    
+
     if (RegisteredUserSaved) {
 
         res.status(201).json({ message: 'User registered successfully' });
@@ -25,6 +25,7 @@ const register = async (req, res) => {
 
 
 const login = async (req, res) => {
+
     const { username, password } = req.body;
 
     const user = Users.find(u => u.username === username);
@@ -36,7 +37,6 @@ const login = async (req, res) => {
     const token = jwt.sign({ username }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN,
     });
-
     res.json({ token });
 };
 
