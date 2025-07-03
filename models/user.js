@@ -1,5 +1,13 @@
 const mongoose = require("mongoose");
 
-const usersSchema = []; // Replace with real DB in production
+const userSchema = mongoose.Schema({
 
-module.exports = users;
+    username:String,
+    email:{
+       type:String
+    },
+    password:String
+
+}) // Replace with real DB in production
+
+module.exports = mongoose.model("User",userSchema);
