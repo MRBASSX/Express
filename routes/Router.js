@@ -4,76 +4,29 @@ const Users = require("../models/userModel")
 
 
 
-router.post("/user",async (req,res,next) => {
+// router.post("/user",async (req,res,next) => {
 
-  const user = new Users(req.body);
-  const  saved = await user.save();
+//   const user = new Users(req.body);
+//   const  saved = await user.save();
 
-  if (saved) {
+//   if (saved) {
 
-    res.redirect("/");
+//     res.redirect("/");
 
-  }
+//   }
 
   
-})
+// })
 
 
 
-router.get("/",async (req,res,next) => {
+// router.get("/",async (req,res,next) => {
 
-const users = await Users.find();
+// const users = await Users.find();
 
-  res.render("home",{users : users })
+//   res.render("home",{users : users })
   
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// })
 
 
 // /* GET index page. */
@@ -134,51 +87,58 @@ const users = await Users.find();
 
 
 
+/* GET page1 page. */
+router.get('/', function(req, res, next) {
 
-// /* GET page1 page. */
-// router.get('/news', function(req, res, next) {
+  video = "Sporst replay";
 
-//   video = "Sporst replay";
+  res.render('news',{video:video});
+});
 
-//   res.render('news',{video:video});
-// });
-// /* GET page2 page. */
-// router.get('/scores', function(req, res, next) {
+/* GET page1 page. */
+router.get('/news', function(req, res, next) {
 
-//   video = "Sporst replay";
+  video = "Sporst replay";
 
-//   res.render('scores',{video:video});
-// });
-// /* GET page3 page. */
-// router.get('/teams', function(req, res, next) {
+  res.render('news',{video:video});
+});
+/* GET page2 page. */
+router.get('/scores', function(req, res, next) {
 
-//   video = "Sporst replay";
+  video = "Sporst replay";
 
-//   res.render('teams',{video:video});
-// });
-// /* GET page4 page. */
-// router.get('/contact', function(req, res, next) {
+  res.render('scores',{video:video});
+});
+/* GET page3 page. */
+router.get('/teams', function(req, res, next) {
 
-//   video = "Sporst replay";
+  video = "Sporst replay";
 
-//   res.render('contact',{video:video});
-// });
-// /* GET page5 page. */
-// router.get('/page5', function(req, res, next) {
+  res.render('teams',{video:video});
+});
+/* GET page4 page. */
+router.get('/contact', function(req, res, next) {
 
-//   video = "Sporst replay";
+  video = "Sporst replay";
 
-//   res.render('page5',{video:video});
-// });
+  res.render('contact',{video:video});
+});
+/* GET page5 page. */
+router.get('/page5', function(req, res, next) {
+
+  video = "Sporst replay";
+
+  res.render('page5',{video:video});
+});
 
 
 
-// /* GET page5 page. */
-// router.get('/mary', async function(req, res, next) {
-//  const  mary =  await Users.find();
+/* GET page5 page. */
+router.get('/mary', async function(req, res, next) {
+ const  mary =  await Users.find();
 
-//   res.send(mary);
-// });
+  res.send(mary);
+});
 
 
 
@@ -283,6 +243,68 @@ const users = await Users.find();
 
 //////////////////////////
 
+
+
+// // Managing Database
+
+
+
+// //////////////////////////
+
+// // CREATE
+// router.post('/', async (req, res) => {
+//   try {
+//     const User = new User(req.body);
+//     const saved = await User.save();
+//     res.status(201).json(saved);
+//   } catch (err) {
+//     res.status(400).json({ message: err.message });
+//   }
+// });
+
+// // READ ALL
+// router.get('/', async (req, res) => {
+//   try {
+//     const User = await User.find();
+//     res.json(User);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
+
+// // READ ONE
+// router.get('/:id', async (req, res) => {
+//   try {
+//     const User = await User.findById(req.params.id);
+//     if (!User) return res.status(404).json({ message: 'Not found' });
+//     res.json(User);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
+
+// // UPDATE
+// router.put('/:id', async (req, res) => {
+//   try {
+//     const updated = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+//     res.json(updated);
+//   } catch (err) {
+//     res.status(400).json({ message: err.message });
+//   }
+// });
+
+// // DELETE
+// router.delete('/:id', async (req, res) => {
+//   try {
+//     const deleted = await User.findByIdAndDelete(req.params.id);
+//     if (!deleted) return res.status(404).json({ message: 'Not found' });
+//     res.json(deleted);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
+
+// //////////////////////////
 
 
 
