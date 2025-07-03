@@ -4,8 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/Router');
-var indexAuth = require('./routes/auth');
+var indexAuth = require('./routes/account/auth');
 var sportsRoute = require('./routes/sports/sports');
+var formsRoute = require('./routes/account/form');
 // require('dotenv').config();
 
 const mongo= require('mongoose');
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', sportsRoute);
 app.use('/', indexAuth);
 app.use('/', indexRouter);
+app.use('/', formsRoute);
 
 
 
