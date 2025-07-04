@@ -1,0 +1,67 @@
+1 . Creating Model for Image
+
+// models/Image.js
+
+const mongoose = require('mongoose');
+
+const ImageSchema = new mongoose.Schema({
+  name: String,
+  data: Buffer,
+  contentType: String
+});
+
+module.exports = mongoose.model('Image', ImageSchema);
+
+
+2.Creating Route For Image 
+
+
+const mongoose = require('mongoose');
+const multer = require('multer');
+const Image = require('./models/Image');
+
+
+// Configure multer storage in memory (we want buffer)
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+// POST /upload route
+app.post('/upload', upload.single('image'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).send('No file uploaded.');
+    }
+
+    const newImage = new Image({
+      name: req.file.originalname,
+      data: req.file.buffer,
+      contentType: req.file.mimetype,
+    });
+
+    await newImage.save();
+
+    res.status(201).send('Image uploaded successfully!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+
+
+
+
+3 . Retrive Image File
+
+app.get('/image/:id', async (req, res) => {
+  try {
+    const image = await Image.findById(req.params.id);
+    if (!image) return res.status(404).send('Image not found');
+    
+    res.contentType(image.contentType);
+    res.send(image.data);
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+});
+
+
